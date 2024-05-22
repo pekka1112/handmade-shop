@@ -26,7 +26,38 @@ public class SearchController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String key = req.getParameter("key");
+        // Pagination - Phân trang
+        String page = req.getParameter("page");
+        // Sort & Range - Sắp xếp
+        String sort = req.getParameter("sort");
+        String range = req.getParameter("range");
+        int totalPages = getTotalPages();
+        CustomizeBean customizeInfo = customizeDAO.getCustomizeInfo();
+        // Sử dụng cho navigation bên trái
+        List<CategoryBean> categories = categoryDAO.findAllCategories();
+        Map<Integer, List<CategoryTypeBean>> categoryTypeMap = new HashMap<>();
+        // Sử dụng cho phần nội dung (Tên type và danh sách sản phẩm)
+        // Phân tích range và lấy ra mảng giá trị
+        double[] rangeLimit = getLimitRange(range);
+        List<ProductBean> products = productDAO.findByKeyAndLimit(key, rangeLimit, sort, getStartLimit(Integer.parseInt(page)), 2);
 
+        // Đưa phân loại sản phẩm tương ứng với categoryId vào map (navigation bên trái)
+        for (CategoryBean category : categories) {
+            List<CategoryTypeBean> categoryTypes = categoryTypeDAO.findCategoryTypeByCategoryId(category.getId());
+            categoryTypeMap.put(category.getId(), categoryTypes);
+        }
+
+        req.setAttribute("customizeInfo", customizeInfo);
+        req.setAttribute("serverPage", Integer.valueOf(page));
+        req.setAttribute("serverTotalPages", totalPages);
+        req.setAttribute("key", key);
+        req.setAttribute("sort", sort);
+        req.setAttribute("range", range);
+        req.setAttribute("products", products);
+        req.setAttribute("categories", categories);
+        req.setAttribute("categoryTypeMap", categoryTypeMap);
+        req.getRequestDispatcher("/search.jsp").forward(req, resp);
     }
 
     private double[] getLimitRange(String range) {
