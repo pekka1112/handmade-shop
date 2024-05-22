@@ -27,9 +27,9 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String key = req.getParameter("key");
-        // Pagination
+        // Pagination - Phân trang
         String page = req.getParameter("page");
-        // Sort & Range
+        // Sort & Range - Sắp xếp
         String sort = req.getParameter("sort");
         String range = req.getParameter("range");
         int totalPages = getTotalPages();
