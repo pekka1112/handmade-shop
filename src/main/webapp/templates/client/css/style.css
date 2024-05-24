@@ -2083,3 +2083,18 @@ a.check {
 .more:hover {
     color: white;
 }
+
+.form-control{
+    color : red;
+}
+.input-group{
+    display: flex;
+    justify-content: flex-end;
+
+}
+#search_bar {
+    border-radius: 20px;
+}
+#search_btn {
+    border-radius: 20px;
+}

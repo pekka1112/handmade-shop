@@ -23,13 +23,19 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="<c:url value="/templates/client/css/tiny-slider.css"/>" rel="stylesheet">
     <link href="<c:url value="/templates/client/css/style.css"/>" rel="stylesheet">
+    <link rel="stylesheet" href="">
 
     <!-- Pagination -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
-    <title>DDD. - Nghệ thuật mỹ nghệ</title>
+    <title>ThankFat - Search Function trong Task</title>
 </head>
+
+<%-- Thankfat : CSS cho thanh Search--%>
+<style>
+
+</style>
 
 <body>
 <jsp:include page="/common/client/header.jsp"/>
@@ -62,8 +68,13 @@
                 <input type="hidden" name="range" value="<%=range%>">
                 <input type="hidden" name="page" value="1">
                 <div class="input-group">
-                    <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="key"/>
-                    <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                    <%-- Ô tìm kiếm --%>
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Search"
+                           aria-label="Nhập từ khóa tìm kiếm" aria-describedby="search-addon" name="key"/>
+                    <%-- Nút tìm kiếm --%>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn" data-mdb-ripple-init>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
                 </div>
             </form>
         </div>

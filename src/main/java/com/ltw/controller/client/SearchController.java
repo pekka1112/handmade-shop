@@ -26,6 +26,7 @@ public class SearchController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 4
         String key = req.getParameter("key");
         // Pagination - Phân trang
         String page = req.getParameter("page");
