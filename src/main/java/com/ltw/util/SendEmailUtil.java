@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import java.util.UUID;
 
+//pwpa pmnm rjsi manr
 public class SendEmailUtil {
     private static final ResourceBundle fromEmailInfo = ResourceBundle.getBundle("fromEmail");
 
@@ -44,7 +45,7 @@ public class SendEmailUtil {
             // Kiểu nội dung
             msg.addHeader("content-type", "text/HTML; charset=UTF-8");
             // Người gửi
-            msg.setFrom(new InternetAddress("dddhandicraft.contact@gmail.com"));
+            msg.setFrom(new InternetAddress("servicetournest@gmail.com"));
             // Người nhận
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             // Tiêu đề
@@ -100,7 +101,7 @@ public class SendEmailUtil {
             // Kiểu nội dung
             msg.addHeader("content-type", "text/HTML; charset=UTF-8");
             // Người gửi
-            msg.setFrom(new InternetAddress("dddhandicraft.contact@gmail.com"));
+            msg.setFrom(new InternetAddress("servicetournest@gmail.com"));
             // Người nhận
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             // Tiêu đề
@@ -156,7 +157,7 @@ public class SendEmailUtil {
             // Kiểu nội dung
             msg.addHeader("content-type", "text/HTML; charset=UTF-8");
             // Người gửi
-            msg.setFrom(new InternetAddress("dddhandicraft.contact@gmail.com"));
+            msg.setFrom(new InternetAddress("servicetournest@gmail.com"));
             // Người nhận
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             // Tiêu đề
