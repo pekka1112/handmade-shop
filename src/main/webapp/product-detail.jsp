@@ -48,15 +48,15 @@
                             </div>
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="../images/knitting/vi_cam_tay.jpg" class="d-block fixed-height-img"
+                                    <img src="templates/client/images/wooden/binh_go_cam_2_1.jpg" class="d-block fixed-height-img"
                                          alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../images/knitting/vi_cam_tay1.jpg" class="d-block fixed-height-img"
+                                    <img src="templates/client/images/wooden/binh_go_cam_2_2.jpg" class="d-block fixed-height-img"
                                          alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../images/knitting/vi_cam_tay2.jpg" class="d-block fixed-height-img"
+                                    <img src="templates/client/images/wooden/binh_go_cam_2_3.jpg" class="d-block fixed-height-img"
                                          alt="...">
                                 </div>
                             </div>

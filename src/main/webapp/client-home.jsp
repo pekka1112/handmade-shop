@@ -73,7 +73,13 @@
                 <a class="product-item center-text" href="<c:url value="/shop-detail-by-category">
                                                               <c:param name="categoryId" value="<%=String.valueOf(category.getId())%>"/>
                                                           </c:url>">
-                    <img src="../images/wooden/binh_go_cam_2_1.jpg"
+                    <%if(category.getId()==1){%>
+                    <img src="templates\client\images\wooden\binh_go_cam_2_1.jpg"
+                         <%}else if(category.getId()==2){%>
+                    <img src="templates\client\images\porcelain\binh-phong-thuy1.jpg"
+                        <%}else if(category.getId()==3){%>
+                    <img src="templates\client\images\knitting\tui_sen.jpg"
+                        <%}%>
                          class="img-fluid product-thumbnail fix-size-thumbnail">
                     <h3 class="center-text">Các sản phẩm làm từ</h3>
                     <strong class="center-text big-category"><%= category.getName() %>

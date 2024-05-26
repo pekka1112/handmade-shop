@@ -79,7 +79,7 @@
                         %>
                         <tr>
                             <td class="product-thumbnail">
-                                <img src="images/product-1.png" alt="Image" class="img-fluid">
+                                <img src="templates\client\images\wooden\binh_go_cam_2_1.jpg" alt="Image" class="img-fluid">
                             </td>
                             <td class="product-name">
                                 <h2 class="h5 text-black"><%=items.get(i).getProduct().getName()%></h2>
