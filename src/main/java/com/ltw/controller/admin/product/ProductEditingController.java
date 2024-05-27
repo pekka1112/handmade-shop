@@ -27,35 +27,36 @@ public class ProductEditingController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        // Sử dụng vòng lặp để set lỗi để trống theo index,
-        // tuy nhiên cần phải giữ đúng thứ tự của input theo form và theo database (Vì sử dụng vòng lặp theo i để set lỗi)
+
         String idStr = req.getParameter("id");
         // Lấy id kiểu int ra để lưu vào database
+        // Sử dụng vòng lặp để set lỗi để trống theo index,
+        // tuy nhiên cần phải giữ đúng thứ tự của input theo form và theo database (Vì sử dụng vòng lặp theo i để set lỗi)
         int id = Integer.parseInt(idStr);
-        String name = req.getParameter("name");
-        String description = req.getParameter("description");
-        String categoryTypeId = req.getParameter("categoryTypeId");
-        String originalPrice = req.getParameter("originalPrice");
-        String discountPrice = req.getParameter("discountPrice");
-        String discountPercent = req.getParameter("discountPercent");
-        String quantity = req.getParameter("quantity");
-        String size = req.getParameter("size");
-        String otherSpec = req.getParameter("otherSpec");
-        String status = req.getParameter("status");
-        String keyword = req.getParameter("keyword");
+        String name = req.getParameter("name");//Ép về kiếutring
+        String description = req.getParameter("description");//Ép về kiếutring
+        String categoryTypeId = req.getParameter("categoryTypeId");//Ép về kiếutring
+        String originalPrice = req.getParameter("originalPrice");//Ép về kiếutring
+        String discountPrice = req.getParameter("discountPrice");//Ép về kiếutring
+        String discountPercent = req.getParameter("discountPercent");//Ép về kiếutring
+        String quantity = req.getParameter("quantity");//Ép về kiếutring
+        String size = req.getParameter("size");//Ép về kiếutring
+        String otherSpec = req.getParameter("otherSpec");//Ép về kiếutring
+        String status = req.getParameter("status");//Ép về kiếutring
+        String keyword = req.getParameter("keyword");//Ép về kiếutring
 
-        // Các biến lưu giữ lỗi về giá
+        // Các biến lưu giữ lỗi về giá trị
         String oPrErr = "e", dPrErr = "e", dPeErr = "e";
 
-        // Biến thông báo thành công
+        // Biến thông báo thành công lỗi
         String success = "success";
 
-        // Đặt các thuộc tính đúng thứ tự
+        // Đặt các thuộc tính đúng thứ tự theo sắp xếp
         String[] inputsForm = new String[]{name, description, categoryTypeId, originalPrice, discountPrice, discountPercent, quantity, size, otherSpec, status, keyword};
-        // Mảng lưu trữ lỗi
+        // Mảng chưas lỗi
         ArrayList<String> errors = new ArrayList<>();
 
-        // Biến bắt lỗi
+        // Biến bắt lỗi của hệ thống
         boolean isValid = true;
 
         for (String string : inputsForm) {
@@ -94,27 +95,27 @@ public class ProductEditingController extends HttpServlet {
         // Nếu không lỗi thì lưu vào database
         if (isValid) {
             // Đổi String về số
-            int categoryTypeIdInt = NumberValidateUtil.toInt(categoryTypeId);
-            int quantityInt = NumberValidateUtil.toInt(quantity);
-            int statusInt = NumberValidateUtil.toInt(status);
-            double originalPriceDouble = NumberValidateUtil.toDouble(originalPrice);
-            double discountPriceDouble = NumberValidateUtil.toDouble(discountPrice);
-            double discountPercentDouble = NumberValidateUtil.toDouble(discountPercent);
+            int categoryTypeIdInt = NumberValidateUtil.toInt(categoryTypeId);// Đổi String về số cho loại
+            int quantityInt = NumberValidateUtil.toInt(quantity);// Đổi String về số cho số lượng
+            int statusInt = NumberValidateUtil.toInt(status);// Đổi String về số cho trạng thái
+            double originalPriceDouble = NumberValidateUtil.toDouble(originalPrice);// Đổi String về số cho giá gốc
+            double discountPriceDouble = NumberValidateUtil.toDouble(discountPrice);// Đổi String về số cho giá giảm
+            double discountPercentDouble = NumberValidateUtil.toDouble(discountPercent);// Đổi String về số cho giá hiện tại
 
-            // Set thuộc tính vào bean
+            // Set thuộc tính vào Productbean
             ProductBean productBean = new ProductBean();
-            productBean.setId(id);
-            productBean.setName(name);
-            productBean.setDescription(description);
-            productBean.setCategoryTypeId(categoryTypeIdInt);
-            productBean.setOriginalPrice(originalPriceDouble);
-            productBean.setDiscountPrice(discountPriceDouble);
-            productBean.setDiscountPercent(discountPercentDouble);
-            productBean.setQuantity(quantityInt);
-            productBean.setSize(size);
-            productBean.setOtherSpec(otherSpec);
-            productBean.setStatus(statusInt);
-            productBean.setKeyword(keyword);
+            productBean.setId(id);//cho id
+            productBean.setName(name);//cho tên
+            productBean.setDescription(description);//cho mổ tả
+            productBean.setCategoryTypeId(categoryTypeIdInt);//cho loại
+            productBean.setOriginalPrice(originalPriceDouble);//cho giá gốc
+            productBean.setDiscountPrice(discountPriceDouble);//cho giá giảm
+            productBean.setDiscountPercent(discountPercentDouble);//cho giá hiện tại
+            productBean.setQuantity(quantityInt);//cho số lượng
+            productBean.setSize(size);//cho size
+            productBean.setOtherSpec(otherSpec);//order
+            productBean.setStatus(statusInt);//cho trạng thái
+            productBean.setKeyword(keyword);//cho mã
 
             productDAO.updateProduct(productBean);
             resp.sendRedirect(req.getContextPath() + "/admin/product-management/editing?id=" + productBean.getId() + "&success=" + success);
