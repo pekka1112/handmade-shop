@@ -2094,7 +2094,9 @@ a.check {
 }
 #search_bar {
     border-radius: 20px;
+
 }
 #search_btn {
     border-radius: 20px;
+    width: 100px;
 }

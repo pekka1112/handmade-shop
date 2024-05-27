@@ -26,6 +26,19 @@
 
     <title>DDD. - Nghệ thuật mỹ nghệ</title>
 </head>
+<style>
+    #search_bar {
+        border-top-left-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+        font-size: 25px;
+        transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
+    }
+
+    #search_bar:focus {
+        font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
+</style>
+
 <body>
 <jsp:include page="/common/client/header.jsp"/>
 <!-- Start Hero Section -->
@@ -42,6 +55,7 @@
 </div>
 <!-- End Hero Section -->
 
+
 <!-- Start Shop Section -->
 <div class="product-section product-section before-footer-section position-relative-top-84px">
     <div class="container">
@@ -50,9 +64,15 @@
                 <input type="hidden" name="sort" value="none">
                 <input type="hidden" name="range" value="none">
                 <input type="hidden" name="page" value="1">
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="key"/>
-                    <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                <div class="input-group" >
+                    <%-- Ô tìm kiếm --%>
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa tìm kiếm"
+                           style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important"
+                           aria-label="Search" aria-describedby="search-addon" name="key"/>
+                    <%-- Nút tìm kiếm --%>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;     " data-mdb-ripple-init>
+                        <i style="font-size: 25px" class="fa-solid fa-magnifying-glass" ></i>
+                    </button>
                 </div>
             </form>
         </div>

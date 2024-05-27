@@ -34,7 +34,16 @@
 
 <%-- Thankfat : CSS cho thanh Search--%>
 <style>
+    #search_bar {
+        border-top-left-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+        font-size: 25px;
+        transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
+    }
 
+    #search_bar:focus {
+        font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
 </style>
 
 <body>
@@ -67,13 +76,14 @@
                 <input type="hidden" name="sort" value="<%=sort%>">
                 <input type="hidden" name="range" value="<%=range%>">
                 <input type="hidden" name="page" value="1">
-                <div class="input-group">
+                <div class="input-group" >
                     <%-- Ô tìm kiếm --%>
-                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Search"
-                           aria-label="Nhập từ khóa tìm kiếm" aria-describedby="search-addon" name="key"/>
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa tìm kiếm"
+                           style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important; font-size: 30px"
+                           aria-label="Search" aria-describedby="search-addon" name="key"/>
                     <%-- Nút tìm kiếm --%>
-                    <button type="submit" class="btn btn-outline-primary" id="search_btn" data-mdb-ripple-init>
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;" data-mdb-ripple-init>
+                        <i style="font-size: 25px" class="fa-solid fa-magnifying-glass" ></i>
                     </button>
                 </div>
             </form>
@@ -184,8 +194,7 @@
                     <div class="col-12 col-md-6 col-lg-3 mb-5">
                         <div class="product-item">
                             <img src="../images/wooden/binh_go_cam_2_1.jpg" class="img-fluid product-thumbnail">
-                            <h3 class="product-title"><%=product.getName()%>
-                            </h3>
+                            <h3 class="product-title"><%=product.getName()%></h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>"
                                                                           pattern="#,##0.##"/>₫</strong>
                             <div class="origin-price-and-discount">
@@ -259,5 +268,14 @@
 <script src="<c:url value="/templates/client/js/bootstrap.bundle.min.js"/>"></script>
 <script src="<c:url value="/templates/client/js/tiny-slider.js"/>"></script>
 <script src="<c:url value="/templates/client/js/custom.js"/>"></script>
+<script>
+    document.getElementById('search_bar').addEventListener('focus', function() {
+        this.style.fontSize = '25px';
+    });
+
+    document.getElementById('search_bar').addEventListener('blur', function() {
+        this.style.fontSize = '25px';
+    });
+</script>
 </body>
 </html>
