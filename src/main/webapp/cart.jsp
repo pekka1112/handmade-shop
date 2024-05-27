@@ -79,6 +79,7 @@
                             // Lấy ra danh sách các sản phẩm đã từ session giỏ hàng
                             // Kiểm tra nếu danh sách lấy ra khác null thì hiển thị danh sách ra giỏ hàng
                             // Sau đó thực hiện 1 vòng lặp for để hiển thị danh sách sản phẩm trong giỏ hàng
+
                             Cart cart = (Cart) request.getSession().getAttribute("cart");
                             if (cart != null) {
                                 List<Item> items = cart.getItems();

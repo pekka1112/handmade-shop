@@ -141,6 +141,11 @@
                     <hr/>
                     <div class="row">
                         <div class="col-sm-12 col-md-6 col-lg-6 dp-flex justify-content-center align-items-center">
+                            <%-- Thêm sản phẩm vào giỏ hàng từ trang chi tiết sản phẩm
+                             Lấy ra giá trị của sản phẩm được chọn và gửi đến server để xử lý thêm sản pẩm vào giỏ (name="productId")
+                             Gửi yêu cầu đến đến server xử lý (name="requestBy" )
+
+                             --%>
                             <a href="<c:url value="/cart-adding">
                                         <c:param name="productId" value="<%=String.valueOf(productDetail.getId())%>"/>
                                         <c:param name="requestBy" value="product-detail"/>
