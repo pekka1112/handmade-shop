@@ -47,6 +47,11 @@
 <div class="untree_co-section before-footer-section">
     <div class="container">
         <%
+            /* Nhận vào các tham số lần lượt là;
+            1. Lỗi (nếu thêm sản phẩm vào giỏ hàng không thành công)
+            2. Mã sản phẩm được thêm thành công vào giỏ hàng
+            3. Số lượng sản phẩm có trong giỏ hàng (cập nhập số lượng nếu sản phẩm đã tồn tại)
+             */
             String error = request.getParameter("error");
             String productId = request.getParameter("productId");
             String quantity = request.getParameter("quantity");
@@ -70,6 +75,11 @@
                         </thead>
                         <tbody>
                         <%
+                            // Lấy ra session chứa các sản phẩm hiển thị trong giỏ hàng
+                            // Lấy ra danh sách các sản phẩm đã từ session giỏ hàng
+                            // Kiểm tra nếu danh sách lấy ra khác null thì hiển thị danh sách ra giỏ hàng
+                            // Sau đó thực hiện 1 vòng lặp for để hiển thị danh sách sản phẩm trong giỏ hàng
+
                             Cart cart = (Cart) request.getSession().getAttribute("cart");
                             if (cart != null) {
                                 List<Item> items = cart.getItems();
@@ -82,8 +92,10 @@
                                 <img src="templates\client\images\wooden\binh_go_cam_2_1.jpg" alt="Image" class="img-fluid">
                             </td>
                             <td class="product-name">
+                            <%-- Lấy ra tên sản phẩm --%>
                                 <h2 class="h5 text-black"><%=items.get(i).getProduct().getName()%></h2>
                             </td>
+                            <%-- Lấy ra giá tiền và giảm giá để hiển thị--%>
                             <td class="original-price"><f:formatNumber value="<%=items.get(i).getProduct().getOriginalPrice()%>" pattern="#,##0.##"/>đ</td>
                             <td class="discount-price"><f:formatNumber value="<%=items.get(i).getProduct().getDiscountPrice()%>" pattern="#,##0.##"/>đ</td>
                             <td>
@@ -92,6 +104,7 @@
                                     <div class="input-group-prepend">
                                         <button class="btn btn-outline-black decrease" type="button">&minus;</button>
                                     </div>
+                                    <%-- Hiển thị số lượng sản phẩm có trong giỏ hàng --%>
                                     <input type="text" class="form-control text-center quantity-amount" name="quantity-<%=i+1%>" value="<%=items.get(i).getQuantity()%>"
                                            placeholder="" aria-label="Example text with button addon"
                                            aria-describedby="button-addon1">
@@ -100,6 +113,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <%-- Hiển thị tổng tiền và tổng sản phẩm --%>
                             <td class="total"><f:formatNumber value="<%=items.get(i).getTotalWithDiscount()%>" pattern="#,##0.##"/>đ</td>
                             <td><a href="<c:url value="/cart-deleting"><c:param name="productId" value="<%=String.valueOf(items.get(i).getProduct().getId())%>"/></c:url>" class="btn btn-black btn-sm">X</a></td>
                         </tr>
@@ -142,6 +156,7 @@
                                 <span class="text-black">Tổng giá gốc</span>
                             </div>
                             <div class="col-md-6 text-right">
+                                <%-- Hiển thị tổng tiền của các sản phẩm --%>
                                 <del class="text-black original-total"><f:formatNumber value="<%=cart.getOriginalPriceTotal()%>" pattern="#,##0.##"/>đ</del>
                             </div>
                         </div>
@@ -150,6 +165,7 @@
                                 <span class="text-black">Tổng giá sau giảm</span>
                             </div>
                             <div class="col-md-6 text-right">
+                                <%-- Hiển thị tổng tiền của các sản phẩm sau khi giảm giá --%>
                                 <strong class="text-black discount-total"><f:formatNumber value="<%=cart.getDiscountPriceTotal()%>" pattern="#,##0.##"/>đ</strong>
                             </div>
                         </div>
