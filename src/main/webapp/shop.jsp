@@ -58,14 +58,9 @@
         </div>
 
         <%
-            /* Trạng thái thêm sản vào giỏ hàng từ server
-            Kiểm tra nếu trạng là null thì sẽ không hiển thị thông báo cho người dùng
-            Nếu thông báo khác null thì sẽ hiển thị thông báo cho người dùng
-             */
             String success = request.getParameter("success");
             if (success != null) {
         %>
-        <%-- Thông báo được hiển thị ở đây --%>
         <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert">
             Thêm sản phẩm thành công!
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -110,10 +105,6 @@
 
             <div class="col-9">
                 <%
-                    // Lấy ra danh sách sản phẩm được trong cơ sở dữ liệu
-                    // Lấy ra dữ liệu trong Map để thực hiện phân loại sản phẩm
-                    // Lặp qua vòng qua để hiện ra danh sách các sản phẩm
-
                     List<CategoryBean> categoriesForProduct = (List<CategoryBean>) request.getAttribute("categories");
                     Map<Integer, List<ProductBean>> productMap = (Map<Integer, List<ProductBean>>) request.getAttribute("productMap");
                     for (CategoryBean category : categoriesForProduct) {
@@ -130,12 +121,6 @@
                         </div>
                     </div>
                     <%
-                        /*
-                        Lấy ra mã sản phẩm
-                        Thực hiện phân loại sản phẩm
-                        Thực hiện một vòng lặp để hiển thị loại sản phẩm
-                        */
-
                         int categoryId = category.getId();
                         List<ProductBean> products = productMap.get(categoryId);
                         for (ProductBean product : products) {
@@ -155,12 +140,6 @@
                                 <del><f:formatNumber value="<%=product.getOriginalPrice()%>" pattern="#,##0.##"/>₫</del>
                                 <label><f:formatNumber value="<%=product.getDiscountPercent()%>" pattern="##0"/>%</label>
                             </div>
-                            <%--
-                            Thêm sản phẩm vào giỏ hàng từ trang sản phẩm:
-                            Gửi đến servlert '/cart-adding' value là productId
-                            Giá trị được gửi đi là mã sản phẩm được người dùng chọn
-                            Nhấn nút 'Thêm sản phẩm vào giỏ hàng để thực hiện thêm sản phẩm vào'
-                            --%>
                             <a href="<c:url value="/cart-adding"><c:param name="productId" value="<%=String.valueOf(product.getId())%>"/><c:param name="requestBy" value="shop"/></c:url>" class="btn-pop-mini left">
                                 <i class="fa-solid fa-cart-plus fa-xl" style="color: #2a1710"></i>
                                 <p class="content-btn-mini">Thêm vào giỏ hàng</p>
