@@ -23,6 +23,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
     <link href="<c:url value="/templates/client/css/tiny-slider.css"/>" rel="stylesheet">
     <link href="<c:url value="/templates/client/css/style.css"/>" rel="stylesheet">
+    <link rel="stylesheet" href="">
 
     <!-- Pagination -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
@@ -30,6 +31,22 @@
 
     <title>DDD. - Nghệ thuật mỹ nghệ</title>
 </head>
+
+<%-- Thankfat : CSS cho thanh Search--%>
+<style>
+    #search_bar {
+        border-top-left-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+        font-size: 25px;
+        transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
+    }
+    #search_bar:focus {
+        font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
+    #search_bar::placeholder {
+        font-size: 20px; /* Đặt kích thước cho placeholder */
+    }
+</style>
 
 <body>
 <jsp:include page="/common/client/header.jsp"/>
@@ -49,7 +66,7 @@
 <!-- End Hero Section -->
 
 <!-- Start Wood Section -->
-<div class="product-section product-section before-footer-section position-relative-top-84px">
+<div class="product-section product-section before-footer-section position-relative-top-50px">
     <div class="container">
         <%
             String sort = (String) request.getAttribute("sort");
@@ -61,9 +78,15 @@
                 <input type="hidden" name="sort" value="<%=sort%>">
                 <input type="hidden" name="range" value="<%=range%>">
                 <input type="hidden" name="page" value="1">
-                <div class="input-group">
-                    <input type="text" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="key"/>
-                    <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                <div class="input-group" >
+                    <%-- Ô tìm kiếm --%>
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa để tìm kiếm sản phẩm"
+                           style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important; font-size: 30px"
+                           aria-label="Search" aria-describedby="search-addon" name="key"/>
+                    <%-- Nút tìm kiếm --%>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;; background-color: #2a1710 " data-mdb-ripple-init>
+                        <i style="font-size: 25px ; color: #e3bd74" class="fa-solid fa-magnifying-glass" ></i>
+                    </button>
                 </div>
             </form>
         </div>
@@ -172,9 +195,9 @@
                     <!-- Start Column 1 -->
                     <div class="col-12 col-md-6 col-lg-3 mb-5">
                         <div class="product-item">
-                            <img src="../images/wooden/binh_go_cam_2_1.jpg" class="img-fluid product-thumbnail">
-                            <h3 class="product-title"><%=product.getName()%>
-                            </h3>
+                            <img  style="height: 200px; width: 220px ; border-radius: 10px";
+                                    src="https://lh5.googleusercontent.com/proxy/eK0xfDQeqkiqb97ZgvmiagYAqVlQSiexe-vtB1qmEBYl_zjmdXqk2-4VipHyT9mBLnXdKGSdM45rngLuyJafBATmfhS83W-oRC5aRIdEAR5PvrLYsRVAnXl7aXlGem3CvOLhBb7dc8KZ9_tilAmBglzp953EkA" class="img-fluid product-thumbnail">
+                            <h3 class="product-title"><%=product.getName()%></h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>"
                                                                           pattern="#,##0.##"/>₫</strong>
                             <div class="origin-price-and-discount">
@@ -248,5 +271,14 @@
 <script src="<c:url value="/templates/client/js/bootstrap.bundle.min.js"/>"></script>
 <script src="<c:url value="/templates/client/js/tiny-slider.js"/>"></script>
 <script src="<c:url value="/templates/client/js/custom.js"/>"></script>
+<script>
+    document.getElementById('search_bar').addEventListener('focus', function() {
+        this.style.fontSize = '25px';
+    });
+
+    document.getElementById('search_bar').addEventListener('blur', function() {
+        this.style.fontSize = '25px';
+    });
+</script>
 </body>
 </html>

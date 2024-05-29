@@ -26,6 +26,31 @@
 
     <title>DDD. - Nghệ thuật mỹ nghệ</title>
 </head>
+<style>
+    #search_bar {
+        border-top-left-radius: 20px !important;
+        border-bottom-left-radius: 20px !important;
+        font-size: 25px;
+        transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
+    }
+    #search_bar:focus {
+        font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
+    #search_bar::placeholder {
+        font-size: 20px; /* Đặt kích thước cho placeholder */
+    }
+    #search_btn {
+        width: 150px;
+        background-color: #2a1710;
+        border-top-right-radius: 20px !important;
+        border-bottom-right-radius: 20px  !important;
+    }
+    #search_btn i {
+        font-size: 25px;
+        color: #e3bd74;
+    }
+</style>
+
 <body>
 <jsp:include page="/common/client/header.jsp"/>
 <!-- Start Hero Section -->
@@ -42,17 +67,25 @@
 </div>
 <!-- End Hero Section -->
 
+
 <!-- Start Shop Section -->
-<div class="product-section product-section before-footer-section position-relative-top-84px">
+<div class="product-section product-section before-footer-section position-relative-top-50px">
     <div class="container">
         <div class="row mb-3">
+            <%-- 4. enter key word into Form to search --%>
             <form action="<c:url value="/search"/>" method="get">
                 <input type="hidden" name="sort" value="none">
                 <input type="hidden" name="range" value="none">
                 <input type="hidden" name="page" value="1">
-                <div class="input-group">
-                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" name="key"/>
-                    <button type="submit" class="btn btn-outline-primary" data-mdb-ripple-init>search</button>
+                <div class="input-group" >
+                    <%-- 4 enterKeyWord() --%>
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa để tìm kiếm sản phẩm"
+                           style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important"
+                           aria-label="Search" aria-describedby="search-addon" name="key"/>
+                    <%-- 4.2 pressSearchButton() --%>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px; background-color: #2a1710; border-top-right-radius: 20px !important;  border-bottom-right-radius: 20px  !important  " data-mdb-ripple-init>
+                        <i style="font-size: 25px ; color: #e3bd74" class="fa-solid fa-magnifying-glass" ></i>
+                    </button>
                 </div>
             </form>
         </div>
@@ -131,7 +164,9 @@
                                 Map<Integer, ProductImageBean> productImage = (Map<Integer, ProductImageBean>) request.getAttribute("imageMap");
                                 ProductImageBean imageBean = productImage.get(product.getId());
                             %>
-                            <img src="<%=imageBean.getLink()%>" alt="image" class="img-fluid product-thumbnail">
+                            <img  style="height: 200px; width: 220px ; border-radius: 10px";
+                                  src="https://lh5.googleusercontent.com/proxy/eK0xfDQeqkiqb97ZgvmiagYAqVlQSiexe-vtB1qmEBYl_zjmdXqk2-4VipHyT9mBLnXdKGSdM45rngLuyJafBATmfhS83W-oRC5aRIdEAR5PvrLYsRVAnXl7aXlGem3CvOLhBb7dc8KZ9_tilAmBglzp953EkA"
+                                  class="img-fluid product-thumbnail">
                             <h3 class="product-title"><%=product.getName()%>
                             </h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>"
