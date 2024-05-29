@@ -32,7 +32,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>Thanh toán</h1>
+                    <h1>Giỏ hàng</h1>
                 </div>
             </div>
             <div class="col-lg-7">
@@ -119,7 +119,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="cart-btn d-inline-block">
-                                    <a style="color: #e3bd74;" href="<c:url value="/product"/>">Tiếp tục mua</a>
+                                    <a style="color: #e3bd74;" href="<c:url value="/shop"/>">Tiếp tục mua</a>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +156,8 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="<c:url value="/checkout"/>" class="cart-btn">Đi đến kiểm tra
+<%--                                1: Nhận yêu cầu thanh toán--%>
+                                <a href="<c:url value="/checkout"/>" class="cart-btn">Thanh toán
                                 </a>
                             </div>
                         </div>

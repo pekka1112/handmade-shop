@@ -45,7 +45,7 @@
         <div class="row justify-content-between">
             <div class="col-lg-5">
                 <div class="intro-excerpt">
-                    <h1>Kiểm tra mua hàng</h1>
+                    <h1>Thanh toán</h1>
                 </div>
             </div>
         </div>
@@ -69,14 +69,17 @@
         <form action="<c:url value="/checkout"/>" method="post">
             <div class="row">
                 <div class="col-md-6 mb-5 mb-md-0">
+<%--                    6: Nhập thông tin thanh toán--%>
                     <h2 class="h3 mb-3 text-black">Thông tin hóa đơn</h2>
                     <div class="border bg-white p-3 p-lg-5">
                         <div class="form-group row">
                             <div class="col-md-6">
                                 <label for="c_fname" class="text-black">Họ <span
                                         class="text-danger">*</span></label>
+<%--                                10: Hiển thị kết qua đã nhập.--%>
                                 <input type="text" class="form-control" id="c_fname" name="firstName" value="<%=(user.getFirstName() == null) ? "" : user.getFirstName()%>" required>
                                 <% if (errors != null && errors.get(0) != null) {%>
+<%--                                7: Kiểm tra thông tin, nếu sai sẽ báo lỗi "Không được để trống!" và yêu cầu nhập.--%>
                                 <div class="error-message">Không được để trống!</div>
                                 <%}%>
                             </div>
@@ -140,6 +143,8 @@
                 <div class="col-md-6">
                     <div class="row mb-5">
                         <div class="col-md-12">
+<%--                            4: Trả về sản phẩm bao gồm giá và số lượng mua--%>
+<%--                                5: Show kết quả trên phiếu order--%>
                             <h2 class="h3 mb-3 text-black">Đơn hàng của bạn</h2>
                             <div class="p-3 p-lg-5 border bg-white">
                                 <table class="table site-block-order-table mb-5">
@@ -163,10 +168,12 @@
                                     </tr>
                                     </tbody>
                                 </table>
+<%--                                11: Yêu cầu về phương thức thanh toán--%>
                                 <div><h5>Phương thức thanh toán</h5></div>
 
                                 <!-- Thay đổi action và method tùy thuộc vào cách bạn xử lý biểu mẫu -->
-                                <div class="border p-3 mb-3">
+<%--                                    12: chọn phương thức thanh toán--%>
+                                  <div class="border p-3 mb-3">
                                     <h3 class="h6 mb-0">
                                         <label class="d-block">
                                             <input type="radio" name="paymentMethod" value="paymentOnDelivery"
@@ -180,12 +187,12 @@
                                     <div class="collapse" id="paymentOnDelivery">
                                         <div class="py-2">
                                             <p class="mb-0">Thanh toán trực tiếp sau khi đã nhận hàng. Hoàn tiền trong
-                                                vòng 30 ngày kể từ khi đặt haàng nếu có sự cố do chúng tôi.</p>
+                                                vòng 30 ngày kể từ khi đặt hàng nếu có sự cố do chúng tôi.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="border p-3 mb-3">
+                                  <div class="border p-3 mb-3">
                                     <h3 class="h6 mb-0">
                                         <label class="d-block">
                                             <input type="radio" name="paymentMethod" value="paymentByBanking"
@@ -199,12 +206,12 @@
                                     <div class="collapse" id="paymentByBanking">
                                         <div class="py-2">
                                             <p class="mb-0">Thanh toán thông qua Internet Banking. Hoàn tiền trong vòng
-                                                30 ngày kể từ khi đặt haàng nếu có sự cố do chúng tôi.</p>
+                                                30 ngày kể từ khi đặt hàng nếu có sự cố do chúng tôi.</p>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
+<%--                                    13: Tiến hành đặt hàng--%>
                                     <button class="btn btn-outline-secondary btn-lg py-3 btn-block" type="submit">Đặt hàng
                                     </button>
                                 </div>
