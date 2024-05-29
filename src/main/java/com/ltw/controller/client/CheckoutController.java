@@ -25,6 +25,7 @@ public class CheckoutController extends HttpServlet {
     private final OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
     private final ProductDAO productDAO = new ProductDAO();
 
+//    2: Kiểm tra sản phẩm trong giỏ hàng
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CustomizeBean customizeInfo = customizeDAO.getCustomizeInfo();
@@ -73,7 +74,7 @@ public class CheckoutController extends HttpServlet {
         UserBean user = (UserBean) SessionUtil.getInstance().getValue(req, "user");
         Cart cart = (Cart) SessionUtil.getInstance().getValue(req, "cart");
         if (isValid) {
-            // Lưu thông tin của người dùng đã nhập
+            // 8,9: Lưu thông tin và trả về của người dùng đã nhập
             UserBean userBean = new UserBean();
             userBean.setId(user.getId());
             userBean.setFirstName(firstName.trim());
