@@ -25,16 +25,18 @@ public class CheckoutController extends HttpServlet {
     private final OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
     private final ProductDAO productDAO = new ProductDAO();
 
-//    2: Kiểm tra sản phẩm trong giỏ hàng
+//    2: doGet()
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//       3: getCustomizeInfo()
         CustomizeBean customizeInfo = customizeDAO.getCustomizeInfo();
         // Kiểm tra só lượng trước khi cho phép checkout
         Cart cart = (Cart) SessionUtil.getInstance().getValue(req, "cart");
         List<Item> items = cart.getItems();
-
+//        4: getQuantity()
         for (Item item : items) {
             if (item.getQuantity() > item.getProduct().getQuantity()) {
+//                5: error() nếu số lượng sản phẩm vượt quá số lượng trong kho
                 resp.sendRedirect(req.getContextPath() + "/cart-management?error=e&productId=" + item.getProduct().getId() + "&quantity=" + item.getProduct().getQuantity());
                 return;
             }
@@ -46,6 +48,7 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+//        7: setUser()
         String firstName = req.getParameter("firstName");
         String lastName = req.getParameter("lastName");
         String addressLine = req.getParameter("addressLine");
@@ -74,7 +77,7 @@ public class CheckoutController extends HttpServlet {
         UserBean user = (UserBean) SessionUtil.getInstance().getValue(req, "user");
         Cart cart = (Cart) SessionUtil.getInstance().getValue(req, "cart");
         if (isValid) {
-            // 8,9: Lưu thông tin và trả về của người dùng đã nhập
+//            9: updateUserAccount()
             UserBean userBean = new UserBean();
             userBean.setId(user.getId());
             userBean.setFirstName(firstName.trim());
@@ -89,6 +92,7 @@ public class CheckoutController extends HttpServlet {
             OrderBean orderBean = new OrderBean();
             orderBean.setUserId(user.getId());
             orderBean.setTotal(cart.getDiscountPriceTotal());
+//            7.1: getPayment()
             if (paymentMethod.equals("paymentOnDelivery")) {
                 orderBean.setPaymentMethod("Thanh toán khi nhận hàng");
             } else {
@@ -99,7 +103,7 @@ public class CheckoutController extends HttpServlet {
             orderBean.setCreatedBy(user.getEmail());
             orderBean.setModifiedDate(new Timestamp(System.currentTimeMillis()));
             orderBean.setModifiedBy(user.getEmail());
-
+//            10: createOrder()
             int orderId = orderDAO.createOrder(orderBean);
             if (orderId == -1) {
                 req.setAttribute("insertError", "ie");
@@ -114,9 +118,10 @@ public class CheckoutController extends HttpServlet {
                     orderDetailBean.setQuantity(item.getQuantity());
 
                     orderDetailDAO.createOrderDetail(orderDetailBean);
-
+//                    11.1: getTotalItems()
                     int quantityProductAfterOrder = productDAO.getTotalItems() - item.getQuantity();
                     // Set lại số lượng product
+//                    11: updateQuantity()
                     productDAO.updateQuantity(item.getProduct().getId(), quantityProductAfterOrder);
                 }
                 resp.sendRedirect(req.getContextPath() + "/thankyou");
@@ -125,7 +130,7 @@ public class CheckoutController extends HttpServlet {
             req.getRequestDispatcher("/checkout.jsp").forward(req, resp);
         }
     }
-
+//    12: calcShipToDate()
     private Timestamp calcShipToDate() {
         Date currentDate = new Date();
 
