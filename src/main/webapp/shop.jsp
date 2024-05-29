@@ -33,9 +33,21 @@
         font-size: 25px;
         transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
     }
-
     #search_bar:focus {
         font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
+    #search_bar::placeholder {
+        font-size: 20px; /* Đặt kích thước cho placeholder */
+    }
+    #search_btn {
+        width: 150px;
+        background-color: #2a1710;
+        border-top-right-radius: 20px !important;
+        border-bottom-right-radius: 20px  !important;
+    }
+    #search_btn i {
+        font-size: 25px;
+        color: #e3bd74;
     }
 </style>
 
@@ -57,7 +69,7 @@
 
 
 <!-- Start Shop Section -->
-<div class="product-section product-section before-footer-section position-relative-top-84px">
+<div class="product-section product-section before-footer-section position-relative-top-50px">
     <div class="container">
         <div class="row mb-3">
             <form action="<c:url value="/search"/>" method="get">
@@ -66,12 +78,12 @@
                 <input type="hidden" name="page" value="1">
                 <div class="input-group" >
                     <%-- Ô tìm kiếm --%>
-                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa tìm kiếm"
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa để tìm kiếm sản phẩm"
                            style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important"
                            aria-label="Search" aria-describedby="search-addon" name="key"/>
                     <%-- Nút tìm kiếm --%>
-                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;     " data-mdb-ripple-init>
-                        <i style="font-size: 25px" class="fa-solid fa-magnifying-glass" ></i>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px; background-color: #2a1710; border-top-right-radius: 20px !important;  border-bottom-right-radius: 20px  !important  " data-mdb-ripple-init>
+                        <i style="font-size: 25px ; color: #e3bd74" class="fa-solid fa-magnifying-glass" ></i>
                     </button>
                 </div>
             </form>

@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.2/jquery.twbsPagination.min.js"></script>
 
-    <title>ThankFat - Search Function trong Task</title>
+    <title>DDD. - Nghệ thuật mỹ nghệ</title>
 </head>
 
 <%-- Thankfat : CSS cho thanh Search--%>
@@ -40,9 +40,11 @@
         font-size: 25px;
         transition: font-size 0.3s ease; /* Thêm chuyển tiếp mượt mà */
     }
-
     #search_bar:focus {
         font-size: 25px; /* Kích thước chữ lớn hơn khi focus */
+    }
+    #search_bar::placeholder {
+        font-size: 20px; /* Đặt kích thước cho placeholder */
     }
 </style>
 
@@ -64,7 +66,7 @@
 <!-- End Hero Section -->
 
 <!-- Start Wood Section -->
-<div class="product-section product-section before-footer-section position-relative-top-84px">
+<div class="product-section product-section before-footer-section position-relative-top-50px">
     <div class="container">
         <%
             String sort = (String) request.getAttribute("sort");
@@ -78,12 +80,12 @@
                 <input type="hidden" name="page" value="1">
                 <div class="input-group" >
                     <%-- Ô tìm kiếm --%>
-                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa tìm kiếm"
+                    <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa để tìm kiếm sản phẩm"
                            style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important; font-size: 30px"
                            aria-label="Search" aria-describedby="search-addon" name="key"/>
                     <%-- Nút tìm kiếm --%>
-                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;" data-mdb-ripple-init>
-                        <i style="font-size: 25px" class="fa-solid fa-magnifying-glass" ></i>
+                    <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px;; background-color: #2a1710 " data-mdb-ripple-init>
+                        <i style="font-size: 25px ; color: #e3bd74" class="fa-solid fa-magnifying-glass" ></i>
                     </button>
                 </div>
             </form>
