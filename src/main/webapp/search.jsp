@@ -195,7 +195,8 @@
                     <!-- Start Column 1 -->
                     <div class="col-12 col-md-6 col-lg-3 mb-5">
                         <div class="product-item">
-                            <img src="../images/wooden/binh_go_cam_2_1.jpg" class="img-fluid product-thumbnail">
+                            <img  style="height: 200px; width: 220px ; border-radius: 10px";
+                                    src="https://lh5.googleusercontent.com/proxy/eK0xfDQeqkiqb97ZgvmiagYAqVlQSiexe-vtB1qmEBYl_zjmdXqk2-4VipHyT9mBLnXdKGSdM45rngLuyJafBATmfhS83W-oRC5aRIdEAR5PvrLYsRVAnXl7aXlGem3CvOLhBb7dc8KZ9_tilAmBglzp953EkA" class="img-fluid product-thumbnail">
                             <h3 class="product-title"><%=product.getName()%></h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>"
                                                                           pattern="#,##0.##"/>₫</strong>

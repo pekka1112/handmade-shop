@@ -163,7 +163,9 @@
                                 Map<Integer, ProductImageBean> productImage = (Map<Integer, ProductImageBean>) request.getAttribute("imageMap");
                                 ProductImageBean imageBean = productImage.get(product.getId());
                             %>
-                            <img src="<%=imageBean.getLink()%>" alt="image" class="img-fluid product-thumbnail">
+                            <img  style="height: 200px; width: 220px ; border-radius: 10px";
+                                  src="https://lh5.googleusercontent.com/proxy/eK0xfDQeqkiqb97ZgvmiagYAqVlQSiexe-vtB1qmEBYl_zjmdXqk2-4VipHyT9mBLnXdKGSdM45rngLuyJafBATmfhS83W-oRC5aRIdEAR5PvrLYsRVAnXl7aXlGem3CvOLhBb7dc8KZ9_tilAmBglzp953EkA"
+                                  class="img-fluid product-thumbnail">
                             <h3 class="product-title"><%=product.getName()%>
                             </h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>"
