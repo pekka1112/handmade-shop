@@ -72,16 +72,17 @@
 <div class="product-section product-section before-footer-section position-relative-top-50px">
     <div class="container">
         <div class="row mb-3">
+            <%-- 4. enter key word into Form to search --%>
             <form action="<c:url value="/search"/>" method="get">
                 <input type="hidden" name="sort" value="none">
                 <input type="hidden" name="range" value="none">
                 <input type="hidden" name="page" value="1">
                 <div class="input-group" >
-                    <%-- Ô tìm kiếm --%>
+                    <%-- 4 enterKeyWord() --%>
                     <input type="text" class="form-control rounded" id="search_bar" placeholder="Nhập từ khóa để tìm kiếm sản phẩm"
                            style=" border-top-left-radius: 20px !important;border-bottom-left-radius: 20px !important"
                            aria-label="Search" aria-describedby="search-addon" name="key"/>
-                    <%-- Nút tìm kiếm --%>
+                    <%-- 4.2 pressSearchButton() --%>
                     <button type="submit" class="btn btn-outline-primary" id="search_btn"  style="width: 150px; background-color: #2a1710; border-top-right-radius: 20px !important;  border-bottom-right-radius: 20px  !important  " data-mdb-ripple-init>
                         <i style="font-size: 25px ; color: #e3bd74" class="fa-solid fa-magnifying-glass" ></i>
                     </button>
