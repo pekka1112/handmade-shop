@@ -133,7 +133,7 @@
                     <!-- Start Column 1 -->
                     <div class="col-12 col-md-6 col-lg-3 mb-5">
                         <div class="product-item">
-                            <img src="../images/wooden/binh_go_cam_2_1.jpg" class="img-fluid product-thumbnail">
+                            <img src="templates\client\images\wooden\binh_go_cam_2_3.jpg" class="img-fluid product-thumbnail">
                             <h3 class="product-title"><%=product.getName()%></h3>
                             <strong class="product-price"><f:formatNumber value="<%=product.getDiscountPrice()%>" pattern="#,##0.##"/>₫</strong>
                             <div class="origin-price-and-discount">
