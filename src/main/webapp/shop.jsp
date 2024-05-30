@@ -91,11 +91,26 @@
         </div>
 
         <%
+            /* Trạng thái thêm sản phẩm vào giỏ hàng từ server
+            Kiểm tra nếu trạng thái là null thì sẽ không hiển thị thông báo cho người dùng
+            Nếu trạng thái khác null thì sẽ hiển thị thông báo cho người dùng
+            */
+
             String success = request.getParameter("success");
+            String error = request.getParameter("error");
             if (success != null) {
         %>
+        <%-- Thông báo thành công --%>
         <div class="alert alert-success alert-dismissible fade show" role="alert" id="autoDismissAlert">
             Thêm sản phẩm thành công!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <% } else if (error != null) { %>
+        <%-- Thông báo lỗi --%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" id="autoDismissAlert">
+            <%= error %>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
