@@ -359,7 +359,6 @@ public class ProductDAO {
                 productBean.setOriginalPrice(resultSet.getDouble("originalPrice"));
                 productBean.setDiscountPrice(resultSet.getDouble("discountPrice"));
                 productBean.setDiscountPercent(resultSet.getDouble("discountPercent"));
-
                 products.add(productBean);
             }
         } catch (SQLException e) {
@@ -370,6 +369,7 @@ public class ProductDAO {
         return products;
     }
 
+    // 7. findByKeyAndLimit(key, range, sort, start, offset)
     public List<ProductBean> findByKeyAndLimit(String key, double[] range, String sort, int start, int offset) {
         List<ProductBean> products = new ArrayList<>();
         String sql = modifiedQueryByKey(key, range, sort);
@@ -386,9 +386,8 @@ public class ProductDAO {
             } else {
                 SetParameterUtil.setParameter(preparedStatement, range[0], range[1], start, offset);
             }
-
+            // 8. returnResultProduct() : ResultSet
             resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
                 ProductBean productBean = new ProductBean();
                 productBean.setId(resultSet.getInt("id"));
@@ -400,11 +399,14 @@ public class ProductDAO {
 
                 products.add(productBean);
             }
+
         } catch (SQLException e) {
+            // 7.1 Return cannot connect database
             e.printStackTrace();
         } finally {
             CloseResourceUtil.closeResource(resultSet, preparedStatement, connection);
         }
+        // 9. returnProductListResult() : ProductBean
         return products;
     }
 

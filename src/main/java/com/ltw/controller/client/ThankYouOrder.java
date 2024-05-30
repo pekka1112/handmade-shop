@@ -14,6 +14,7 @@ import java.io.IOException;
 public class ThankYouOrder extends HttpServlet {
     private final CustomizeDAO customizeDAO = new CustomizeDAO();
 
+//    14: Thông báo về việc đã đặt hàng thành công
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CustomizeBean customizeInfo = customizeDAO.getCustomizeInfo();
