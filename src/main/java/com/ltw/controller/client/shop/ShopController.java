@@ -32,7 +32,7 @@ public class ShopController extends HttpServlet {
         Map<Integer, List<ProductBean>> productMap = new HashMap<>();
         Map<Integer, ProductImageBean> imageMap = new HashMap<>();
 
-        // Đưa sản phẩm tương ứng với categoryId vào map
+        // 1. Đưa sản phẩm tương ứng với categoryId vào map
         for (CategoryBean category : categories) {
             int categoryId = category.getId();
             List<ProductBean> products = productDAO.findThreeProductByCategoryId(categoryId);
@@ -43,7 +43,7 @@ public class ShopController extends HttpServlet {
             productMap.put(categoryId, products);
         }
 
-        // // Đưa phân loại sản phẩm tương ứng với categoryId vào map (navigation bên trái)
+        // Đưa phân loại sản phẩm tương ứng với categoryId vào map (navigation bên trái)
         for (CategoryBean category : categories) {
             int categoryId = category.getId();
             List<CategoryTypeBean> categoryTypes = categoryTypeDAO.findCategoryTypeByCategoryId(categoryId);

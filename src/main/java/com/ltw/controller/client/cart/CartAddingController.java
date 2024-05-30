@@ -20,7 +20,7 @@ public class CartAddingController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            // Lấy productId từ request
+            // 1. Lấy productId từ request
             String productIdStr = req.getParameter("productId");
             if (productIdStr == null || productIdStr.isEmpty()) {
                 throw new IllegalArgumentException("Mã sản phẩm không hợp lệ");
@@ -33,42 +33,42 @@ public class CartAddingController extends HttpServlet {
                 throw new IllegalArgumentException("Mã sản phẩm phải là một số nguyên hợp lệ", e);
             }
 
-            // Tìm sản phẩm từ id nhận được
+            // 2. Tìm sản phẩm từ id nhận được
             ProductBean product = productDAO.findProductById(productId);
             if (product == null) {
                 throw new IllegalArgumentException("Sản phẩm không tồn tại");
             }
 
-            // Tạo mới một đối tượng thể hiện của giỏ hàng
+            // 3. Tạo mới một đối tượng thể hiện của giỏ hàng
             Cart cart = null;
 
-            // Lấy ra session hiện tại chứa các sản phẩm của giỏ hàng
+            // 4. Lấy ra session hiện tại chứa các sản phẩm của giỏ hàng
             Object o = SessionUtil.getInstance().getValue(req, "cart");
 
-            // Kiểm tra nếu session giỏ hàng đã tồn tại thì lấy ra session đã tồn tại
+            // 5. Kiểm tra nếu session giỏ hàng đã tồn tại thì lấy ra session đã tồn tại
             if (o != null) {
                 cart = (Cart) o;
             } else {
                 cart = new Cart();
             }
 
-            // Tạo mới thể hiện của sản phẩm
+            // 6. Tạo mới thể hiện của sản phẩm
             Item item = new Item();
             item.setProduct(product);
 
-            // Thêm sản phẩm vào giỏ hàng
+            // 7. Thêm sản phẩm vào giỏ hàng
             cart.addItem(item);
 
-            // Gán lại session Cart mới đã được thêm sản phẩm
+            // 8. Gán lại session Cart mới đã được thêm sản phẩm
             SessionUtil.getInstance().putValue(req, "cart", cart);
 
-            // Chuyển hướng tới trang shop với thông báo thành công
+            // 9. Chuyển hướng tới trang shop với thông báo thành công
             resp.sendRedirect(req.getContextPath() + "/shop?success=s");
         } catch (IllegalArgumentException e) {
-            // Chuyển hướng tới trang lỗi với thông báo lỗi
+            // 10. Chuyển hướng tới trang lỗi với thông báo lỗi
             resp.sendRedirect(req.getContextPath() + "/shop?error=" + e.getMessage());
         } catch (Exception e) {
-            // Xử lý các lỗi không mong muốn khác và chuyển hướng tới trang lỗi tổng quát
+            // 11. Xử lý các lỗi không mong muốn khác và chuyển hướng tới trang lỗi tổng quát
             e.printStackTrace();
             resp.sendRedirect(req.getContextPath() + "/shop?error=Đã có lỗi xảy ra, vui lòng thử lại sau.");
         }

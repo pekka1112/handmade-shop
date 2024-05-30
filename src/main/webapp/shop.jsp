@@ -91,9 +91,10 @@
         </div>
 
         <%
-            /* Trạng thái thêm sản phẩm vào giỏ hàng từ server
-            Kiểm tra nếu trạng thái là null thì sẽ không hiển thị thông báo cho người dùng
-            Nếu trạng thái khác null thì sẽ hiển thị thông báo cho người dùng
+            /*
+            1. Trạng thái thêm sản phẩm vào giỏ hàng từ server
+            2. Kiểm tra nếu trạng thái là null thì sẽ không hiển thị thông báo cho người dùng
+            3. Nếu trạng thái khác null thì sẽ hiển thị thông báo cho người dùng
             */
 
             String success = request.getParameter("success");
@@ -153,6 +154,13 @@
 
             <div class="col-9">
                 <%
+<<<<<<< Updated upstream
+=======
+                    //1. Lấy ra danh sách sản phẩm được trong cơ sở dữ liệu
+                    //2. Lấy ra dữ liệu trong Map để thực hiện phân loại sản phẩm
+                    //3. Lặp qua vòng qua để hiện ra danh sách các sản phẩm
+
+>>>>>>> Stashed changes
                     List<CategoryBean> categoriesForProduct = (List<CategoryBean>) request.getAttribute("categories");
                     Map<Integer, List<ProductBean>> productMap = (Map<Integer, List<ProductBean>>) request.getAttribute("productMap");
                     for (CategoryBean category : categoriesForProduct) {
@@ -169,6 +177,15 @@
                         </div>
                     </div>
                     <%
+<<<<<<< Updated upstream
+=======
+                        /*
+                        1.Lấy ra mã sản phẩm
+                        2.Thực hiện phân loại sản phẩm
+                        3.Thực hiện một vòng lặp để hiển thị loại sản phẩm
+                        */
+
+>>>>>>> Stashed changes
                         int categoryId = category.getId();
                         List<ProductBean> products = productMap.get(categoryId);
                         for (ProductBean product : products) {
@@ -190,6 +207,15 @@
                                 <del><f:formatNumber value="<%=product.getOriginalPrice()%>" pattern="#,##0.##"/>₫</del>
                                 <label><f:formatNumber value="<%=product.getDiscountPercent()%>" pattern="##0"/>%</label>
                             </div>
+<<<<<<< Updated upstream
+=======
+                            <%--
+                            1. Thêm sản phẩm vào giỏ hàng từ trang sản phẩm:
+                            2. Gửi đến servlert '/cart-adding' value là productId
+                            3. Giá trị được gửi đi là mã sản phẩm được người dùng chọn
+                            4. Nhấn nút 'Thêm sản phẩm vào giỏ hàng để thực hiện thêm sản phẩm vào'
+                            --%>
+>>>>>>> Stashed changes
                             <a href="<c:url value="/cart-adding"><c:param name="productId" value="<%=String.valueOf(product.getId())%>"/><c:param name="requestBy" value="shop"/></c:url>" class="btn-pop-mini left">
                                 <i class="fa-solid fa-cart-plus fa-xl" style="color: #2a1710"></i>
                                 <p class="content-btn-mini">Thêm vào giỏ hàng</p>
